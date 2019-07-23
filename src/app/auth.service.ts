@@ -8,12 +8,13 @@ import { ActivatedRoute } from '@angular/router';
 @Injectable()
 export class AuthService {
 user$: Observable<firebase.User>;
-  constructor(private afAuth: AngularFireAuth, private route: ActivatedRoute) {
-    this.user$ = afAuth.authState;
+
+  constructor(private auth: AngularFireAuth, private route:ActivatedRoute) {
+    this.user$ = auth.authState;
    }
   login(){
-   const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-   localStorage.setItem('returnUrl', returnUrl);
+   let returnUrl= this.route.snapshot.queryParamMap.get('returnUrl')||'/';
+   localStorage.setItem('returnUrl',returnUrl);
    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
 
   }
