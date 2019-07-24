@@ -9,12 +9,12 @@ import { ActivatedRoute } from '@angular/router';
 export class AuthService {
 user$: Observable<firebase.User>;
 
-  constructor(private auth: AngularFireAuth, private route:ActivatedRoute) {
+  constructor(private auth: AngularFireAuth, private route: ActivatedRoute) {
     this.user$ = auth.authState;
    }
-  login(){
-   let returnUrl= this.route.snapshot.queryParamMap.get('returnUrl')||'/';
-   localStorage.setItem('returnUrl',returnUrl);
+  login() {
+   const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+   localStorage.setItem('returnUrl', returnUrl);
    this.auth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
 
   }

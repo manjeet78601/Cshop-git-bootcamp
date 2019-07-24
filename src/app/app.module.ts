@@ -25,6 +25,7 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import {CustomFormsModule} from 'ng2-validation';
+import { AdminAuthGuard } from './admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -73,20 +74,22 @@ import {CustomFormsModule} from 'ng2-validation';
       component: MyOrdersComponent, canActivate: [AuthGuard]
     },
     { path: 'admin/products',
-      component: AdminProductsComponent, canActivate: [AuthGuard]
+      component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard]
     },
 
     { path: 'admin/products/new',
     component: ProductFormComponent, canActivate: [AuthGuard]
   },
   { path: 'admin/orders',
-      component: AdminOrdersComponent, canActivate: [AuthGuard]
+      component: AdminOrdersComponent, canActivate: [AuthGuard, AdminAuthGuard]
     }
     ])
   ],
   providers: [
     AuthService,
     AuthGuard,
+    AdminAuthGuard,
+
     UserService,
     CategoryService,
     ProductService
