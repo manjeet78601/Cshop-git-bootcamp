@@ -15,7 +15,7 @@ export class AdminAuthGuard implements CanActivate {
 
   canActivate():Observable<boolean> {
     this.auth.user$
-    .switchMap(user$ => this.userService.get(user.uid))
+    .switchMap(user$ => this.userService.get(user$.uid))
      .map(appUser => appUser.isAdmin);
 
   }
