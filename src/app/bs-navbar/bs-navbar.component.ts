@@ -15,7 +15,7 @@ export class BsNavbarComponent {
   appUser: AppUser;
 
   constructor(private auth: AuthService) {
-auth.AppUser$.subscribe( appUser => this.appUser = appUser);
+auth.appUser$.subscribe( appUser => this.appUser = appUser);
 
   }
 
